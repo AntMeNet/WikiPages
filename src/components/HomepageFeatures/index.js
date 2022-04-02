@@ -3,56 +3,31 @@ import clsx from 'clsx';
 import style from './feature.style.module.css';
 const FeatureList = [
   {
-    title: 'Installation und Anwendung',
+    title: 'Installation',
     imgPath: '/img/150px-Skilllevel1.png',
-    url: '/docs/intro',
-    description: (
-      <>
-        Bevor es losgehen kann, muss AntMe! auf dem System installiert werden. 
-        as beinhaltet nicht nur das eigentliche Spiel, sondern auch einige Abhängigkeiten. 
-        So braucht es z.B. eine Entwicklungsumgebung mit der Code produziert werden kann. 
-        Danach lohnt es sich sicher die Funktionalitäten des Spiels kennen zu lernen, bevor es richtig los geht.
-      </>
-    ),
+    url: '/docs/Tutorials/installation/Voraussetzung',
   },
   {
-    title: 'Installation und Anwendung',
+    title: 'Ameisen programmieren',
     imgPath: '/img/150px-Skilllevel2.png',
-    url: '/docs/intro',
-    description: (
-      <>
-        Bevor es losgehen kann, muss AntMe! auf dem System installiert werden. 
-        as beinhaltet nicht nur das eigentliche Spiel, sondern auch einige Abhängigkeiten. 
-        So braucht es z.B. eine Entwicklungsumgebung mit der Code produziert werden kann. 
-        Danach lohnt es sich sicher die Funktionalitäten des Spiels kennen zu lernen, bevor es richtig los geht.
-      </>
-    ),
+    url: '/docs/Tutorials/installation',
   },
   {
-    title: 'Installation und Anwendung',
+    title: 'API',
     imgPath: '/img/150px-Skilllevel3.png',
-    url: '/docs/intro',
-    description: (
-      <>
-        Bevor es losgehen kann, muss AntMe! auf dem System installiert werden. 
-        as beinhaltet nicht nur das eigentliche Spiel, sondern auch einige Abhängigkeiten. 
-        So braucht es z.B. eine Entwicklungsumgebung mit der Code produziert werden kann. 
-        Danach lohnt es sich sicher die Funktionalitäten des Spiels kennen zu lernen, bevor es richtig los geht.
-      </>
-    ),
+    url: '/docs/api/index',
   },
 ];
 
-function Feature({imgPath, title, description, url}) {
+function Feature({imgPath, title, url}) {
   return (
     <div className='col' >
       <a className={clsx('card shadow--md', style.card)} href={url}>
-        <div className={clsx("card__header text--center", style.card__header)}>
+        <div className={clsx("text--center", style.imageContainer)}>
           <img className={clsx(style.featureImg)} src={imgPath} />
         </div>
-        <h3 className='text--center'>{title}</h3>
-        <p className="text--left padding-horiz--md card__body">{description}</p>
-        </a>
+        <h3 className={clsx('card__footer text--center', style.card__title)}>{title}</h3>
+      </a>
     </div>
   );
 }

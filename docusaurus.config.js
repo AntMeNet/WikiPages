@@ -15,20 +15,10 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'AntMe', // Usually your GitHub org/user name.
   projectName: 'AntMeDoc', // Usually your repo name.
-
-
+  
   i18n: {
     defaultLocale: 'de',
-    locales: ['de', 'en'],
-    localeConfigs: {
-      de:{
-        htmlLang: 'de-De'
-      },
-      en:{
-        htmlLang: 'en-GB',
-      }
-    }
-
+    locales: ['de']
   },
 
   presets: [
@@ -63,14 +53,15 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'tutorials/Installation/VisualStudio',
             position: 'left',
             label: 'Tutorials',
           },
           {
             href: 'https://github.com/AntMeNet/AntMeClassic',
-            label: 'GitHub',
             position: 'right',
+            className: 'header-github-link',
+            'aria-label': 'GitHub repository',
           },
         ],
       },

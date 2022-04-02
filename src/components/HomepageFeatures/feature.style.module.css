@@ -7,29 +7,28 @@
 
 .card{
   color: var(--ifm-font-color-base);
-  border-color: var(--ifm-card-background-color);
+  border-color: transparent;
   border-width: 1px;
   border-style: solid;
-  align-items: center;
-  justify-content: center;
-}
-
-.card__header{
-  height: 15rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card__header#img{
-  flex-shrink: 0;
+  overflow: hidden;
 }
 
 .card:hover{
   border-color: var(--ifm-color-primary);
   text-decoration: none;
-  color: var(--ifm-font-color-base);
-  border-width: 1px;
-  border-style: solid;
+  box-shadow: none !important;
+}
+
+.card__title{
+  margin-bottom: 0;
+  background-color: var(--ifm-color-primary);
+  color: #fff;
+  padding: 0.5rem;
+}
+
+.imageContainer{
+  height: 15rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
