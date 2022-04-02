@@ -1,0 +1,74 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+
+
+@font-face {
+  font-family: "Roboto Medium";
+  src: url('/static/fonts/Roboto-Medium.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: "Roboto Regular";
+  src: url('/static/fonts/Roboto-Regular.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: "PatrickHand Regular";
+  src: url('/static/fonts/PatrickHand-Regular.ttf') format('ttf');
+}
+
+:root {
+
+  --ifm-color-primary: #f89400;
+  --ifm-color-primary-dark: #ac6700;
+  --ifm-color-primary-darker: #a26100;
+  --ifm-color-primary-darkest: #865000;
+  --ifm-color-primary-light: #d27d00;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #ffb343;
+  --ifm-code-font-size: 95%;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #F29100;
+  --ifm-color-primary-dark: #df8500;
+  --ifm-color-primary-darker: #d37e00;
+  --ifm-color-primary-darkest: #ae6800;
+  --ifm-color-primary-light: #ff9f12;
+  --ifm-color-primary-lighter: #ffa41e;
+  --ifm-color-primary-lightest: #ffb343;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+[data-theme='dark'] .docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Adding line numbers to code blocks*/
+.prism-code {
+  counter-reset: line-number;
+}
+
+.prism-code .token-line::marker {
+  color: var(--ifm-color-gray-700);
+  content: counter(line-number);
+}
+
+.prism-code .token-line {
+  counter-increment: line-number;
+  display: list-item;
+  padding-left: var(--ifm-pre-padding);
+  margin-left: var(--ifm-global-spacing);
+}
