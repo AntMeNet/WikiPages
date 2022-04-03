@@ -9,6 +9,7 @@ const config = {
   title: 'AntMe!',
   tagline: 'Spielend Porgrammieren lernen',
   url: 'https://your-docusaurus-test-site.com',
+  trailingSlash: false,
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -67,11 +68,7 @@ const config = {
             docId: 'tutorials/Installation/Installation',
             position: 'left',
             label: 'Tutorials',
-          },
-          {
-            type: 'localeDropdown',
-            position: 'right'
-          },
+          },          
           {
             href: 'https://github.com/AntMeNet/AntMeClassic',
             position: 'right',

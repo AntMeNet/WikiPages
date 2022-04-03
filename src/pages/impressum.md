@@ -4,7 +4,7 @@ title: Impressum
 
 # Angaben gemäß § 5 TMG
 
-Tom Wendel<br/>
+AntMe! GmbH<br/>
 Fuchsbergstrasse 8a<br/> 
 86938 Schondorf am Ammersee<br/> 
 
