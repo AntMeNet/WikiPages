@@ -1,0 +1,124 @@
+---
+title: Makierungen
+sidebar_position: 4
+---
+
+Bisher hast du deinen Ameisen beigebracht, wie sie Nahrung sammeln und wie sie mit Wanzen kämpfen. 
+Dabei sind deine Ameisen eher auf sich allein gestellt. 
+Vielleicht waren gerade einige andere Ameisen in der Nähe und haben ihnen geholfen, aber das war sehr zufallsabhängig. 
+In diesem Tutorial lernst du, wie deine Ameisen miteinander kommunizieren können.
+
+Die Ameisen kommunizieren dabei, wie auch in der echten Natur, durch das Aussenden von Pheromonen. 
+Pheromone sind Duftstoffe, denen eine sogenannte Botenfunktion zukommt. 
+Botenstoffe dienen der Übertragung von Informationen innerhalb einer Art.
+So bewirken Pheromone beispielsweise eine Änderung der Verhaltensweise einer Ameise, die diese Pheromone wahrnimmt. 
+Die Pheromone informieren die Ameise darüber, was sie tun muss, z.B. einen Feind angreifen oder einem bestimmten Weg folgen.
+
+Bei AntMe! bezeichnen wir die Duftstoffe der Einfachheit halber als Markierungen. 
+Diese Markierungen teilen anderen Ameisen mit, wie sie sich verhalten sollen. Wenn eine Ameise eine solche Markierung wahrnimmt, kann sie daraus zwei Dinge entnehmen:
+
+- Die Koordinaten des Zentrums der Markierung
+- Eine beliebige Information in Gestalt einer Zahl (diese wird von der Ameise hinterlegt, die die Markierung gesetzt hat).
+
+Jetzt schauen wir, wie du Markierungen einsetzen kannst, um deine Ameisen bei der Nahrungssuche zu unterstützen.
+
+Suche bei „Fortbewegung“ die Methode „Sieht“ für Zucker. Füge ihr folgenden Quelltext hinzu:
+
+```cs
+SprüheMakierung(0,100);
+```
+
+Suche jetzt die Methode „Sieht“ für Obst. Ändere sie genauso ab wie oben abgebildet, d.h. Wie du es soeben mit Zucker gemacht hast.
+
+Suche bei „Kampf“ die Methode „Sieht“ für Wanzen. Ändere auch sie genauso ab wie du es soeben mit Zucker und Obst gemacht hast.
+
+Wenn du das Spiel nun startest, wirst du sehen, dass deine Ameisen eine informationslose Markierung versprühen (dafür ist der Wert 100 in der Methode zuständig). 
+Wieso informationslos? Genau genommen enthalten die Markierungen die Information 0. Die Ameisen versprühen jetzt eine sich ausbreitende Markierung, sobald sie einen Zuckerhaufen, ein Obststück oder eine Wanze sehen. 
+Aber noch wissen deine Ameisen nicht, wie sie darauf reagieren sollen. Das teilen wir ihnen jetzt mit.
+
+Suche bei „Kommunikation“ die Methode „RiechtFreund“ und füge den folgenden Quelltext hinzu:
+
+```cs
+if(Ziel == null)
+{
+    GeheZuZiel(makierung);
+}
+```
+
+Wenn deine Ameisen kein anderes Ziel haben, werden sie jetzt einer Markierung zur Nahrung und in den Kampf folgen.
+
+Nun wollen wir etwas machen, was etwas mehr Verständnis der Markierungen erfordert: eine Ameisenstraße von einem Zuckerhaufen zum Ameisenbau.
+
+Suche bei „Fortbewegung“ die Methode „Tick“ und füge den folgenden Quelltext hinzu:
+
+```cs
+if(Ziel is Bau && AktuelleLast > 0 && GetragenesObst == null)
+{
+    SprüheMakierung(Richtung + 180);
+}
+```
+
+Als Information speichern wir in der Markierung die aktuelle Richtung, in die die Ameise blickt, plus 180 Grad, also genau die entgegengesetzte Richtung. 
+Während die Ameise von einem Zuckerhaufen aus (nicht von einem Obststück aus) mit Zucker auf dem Rücken zum Ameisenbau läuft, versprüht sie hinter sich eine Spur von Markierungen, die zu dem Zuckerhaufen hin führen. 
+Diese Markierungen breiten sich nicht aus, was sie sehr langlebig macht. So entsteht eine durch Markierungen erstellte Spur vom Ameisenbau zum Zuckerhaufen, an der sich andere Ameisen orientieren können.
+
+Nun müssen wir noch die Reaktion einer Ameise auf eine Markierung anpassen. Bisher sind deine Ameisen immer zum Zentrum einer Markierung gegangen. Jetzt sollen sie aber in die in der Information der Markierung hinterlegte Richtung gehen.
+
+Suche nun bei „Kommunikation“ die Methode „RiechtFreund“ und ersetze den Quelltext in der Methode mit folgendem Quelltext:
+
+```cs
+if(Ziel == null)
+{
+    DreheInRichtung(makierung.Information);
+    GeheGeradeaus();
+}
+```
+
+Wenn eine Ameise nun den Zucker zum Bau gebracht hat, sieht sie sofort wieder die gesprühte Markierung und kann direkt zum Zucker zurückgehen. 
+So bildet sich eine Ameisenstraße. Falls eine Wanze diese Straße kreuzen sollte, sind mit hoher Wahrscheinlichkeit genug Ameisen in der Nähe, um sie anzugreifen und zu besiegen.
+
+Jetzt kommt eine kleine Denkaufgabe. Erinnere dich, was du deinen Ameisen gesagt hast, was sie tun sollen, wenn sie Nahrung oder eine Wanze sehen. 
+Die Ameisen sollen eine sich ausbreitende Markierung ohne darin enthaltene Information sprühen. 
+Um auf die Markierung richtig zu reagieren, brauchen deine Ameisen jetzt aber eine Richtungsinformation. Wir müssen die „Sieht“ und „SiehtFeind“-Methoden also so ändern, dass sie diese Information enthalten.
+Außerdem müssen wir die Ausbreitungsrate (die 100 Schritte, die wir vorhin angegeben haben) anpassen. 
+Stell dir vor, eine Ameise ist 20 Schritte von einem Zuckerhaufen entfernt und sprüht eine Markierung, die zu dem Zucker hinführt und sich 100 Schritte ausbreitet. 
+Was macht eine zweite Ameise, die die Markierung auf der anderen Seite des Zuckers (von der ersten Ameise aus gesehen) bemerkt? Sie geht in die falsche Richtung. 
+
+ Suche bei „Nahrung“ die Methode „Sieht“ für Zucker und ändere die Zeile im Quelltext, die  die Markierung sprüht, folgendermaßen ab:
+
+ ```cs
+int entfernung, richtung;
+entfernung = Koodinate.BestimmeEntfernung(this, zucker);
+richtung = Koordinate.BestimmeRichtung(this, zucker);
+SprüheMakierung(richtung, entfernung);
+ ```
+
+:::caution Achtung!
+Achte darauf, dass du die Änderungen auch in der richtigen Methode vornimmst.
+:::
+
+Suche bei „Nahrung“ die Methode „Sieht“ für Obst. Ändere sie genauso ab wie oben beschrieben ab.
+
+:::caution Achtung!
+Achte darauf, dass du bei Obst auch "obst" einsetzt.
+:::
+
+
+So sollte es im Editor aussehen:
+
+![](/img/tutorials/makierungen/Lektion6_7.png)
+
+Suche bei „Kampf“ die Methode „Siehtfeind“ für Wanzen. Ändere auch diese Methoden  genauso ab wie du es soeben mit Zucker und Obst gemacht hast.
+
+![](/img/tutorials/makierungen/Lektion6_8.png)
+
+So sieht es dann in der 3D-Ansicht des Spiels aus. Man kann gut die Markierungen erkennen.
+
+![](/img/tutorials/makierungen/Lektion6_9.png)
+
+Durch diese Änderungen enthalten nun alle Markierungen eine Richtungsinformation und sie breiten sich nur soweit aus, wie diese Information auch stimmt. 
+Es steht dir frei, wie du die Information in einer Markierung benutzt. 
+Solange du beim Versprühen und beim Reagieren der Ameisen konsequent bleibst, kannst du sehr viele Dinge mit Markierungen machen. 
+Zum Beispiel kannst du unterschiedliche Werte speichern, wenn die Ameise Nahrung sieht und wenn sie einen Feind sieht.
+
+In dem nächsten Tutorial erfährst du, wie du deine Ameisen stärker und schneller machen kannst, indem du ihnen – wie in einem Rollenspiel – Punkte vergibst.
