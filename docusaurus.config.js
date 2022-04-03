@@ -34,7 +34,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: "https://github.com/AntMeNet/WikiPages/tree/develop/",
+          editUrl: "https://github.com/AntMeNet/WikiPages/edit/main/",
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
         },
@@ -49,7 +49,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      
       colorMode:{
         respectPrefersColorScheme : true
       },
