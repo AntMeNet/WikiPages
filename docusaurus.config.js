@@ -14,7 +14,7 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'AntMe', // Usually your GitHub org/user name.
-  projectName: 'AntMeDoc', // Usually your repo name.
+  projectName: 'WikiPages', // Usually your repo name.
   
   i18n: {
     defaultLocale: 'de',
@@ -83,24 +83,12 @@ const config = {
       footer: {
         links: [
           {
-            title: 'Community',
-            items: [
-              {
-                label: 'Facebook',
-                href: 'https://www.facebook.com/antme2',
-              },
-              {
-                label: 'YouTube',
-                href: 'https://www.youtube.com/c/TomWendel',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/bobstriker',
-              },
-            ],
-          },
+            label: 'Impressum',
+            to: '/impressum',
+          }
         ],
         copyright: `Copyright © ${new Date().getFullYear()} AntMe! GmbH`,
+
       },
       prism: {
         theme: lightCodeTheme,
