@@ -1,0 +1,35 @@
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.card{
+  color: var(--ifm-font-color-base);
+  border-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+  overflow: hidden;
+}
+
+.card:hover{
+  border-color: var(--ifm-color-primary);
+  border-style: solid;
+  text-decoration: none;
+  box-shadow: none !important;
+}
+
+.card__title{
+  margin-bottom: 0;
+  background-color: var(--ifm-color-primary);
+  color: #fff;
+  padding: 0.5rem;
+}
+
+.imageContainer{
+  height: 15rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
