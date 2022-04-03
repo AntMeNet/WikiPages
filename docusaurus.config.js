@@ -8,9 +8,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 const config = {
   title: 'AntMe!',
   tagline: 'Spielend Porgrammieren lernen',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://antmenet.github.io',
   trailingSlash: false,
-  baseUrl: '/',
+  baseUrl: '/WikiPages/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -19,14 +19,11 @@ const config = {
   
   i18n: {
     defaultLocale: 'de',
-    locales: ['de', 'en'],
+    locales: ['de'],
     localeConfigs: {
       de:{
         htmlLang: 'de-DE'
       },
-      en:{
-        htmlLang: 'en-GB'
-      }
     }
   },
 
