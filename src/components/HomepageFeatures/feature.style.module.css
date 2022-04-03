@@ -15,6 +15,7 @@
 
 .card:hover{
   border-color: var(--ifm-color-primary);
+  border-style: solid;
   text-decoration: none;
   box-shadow: none !important;
 }

@@ -1,11 +1,16 @@
 import React from 'react';
 import clsx from 'clsx';
 import style from './feature.style.module.css';
+import Translate, {translate} from '@docusaurus/Translate';
 const FeatureList = [
   {
-    title: 'Installation',
+    title: translate({
+      id: 'homepage.install',
+      message: 'Installation',
+      description: 'The label for the install card on the home page'
+    }),
     imgPath: '/img/150px-Skilllevel1.png',
-    url: '/docs/Tutorials/installation/Voraussetzung',
+    url: '/docs/Tutorials/installation',
   },
   {
     title: 'Ameisen programmieren',

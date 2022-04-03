@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'AntMe!',
-  tagline: 'Das große krabbeln',
+  tagline: 'Spielend Porgrammieren lernen',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -18,7 +18,15 @@ const config = {
   
   i18n: {
     defaultLocale: 'de',
-    locales: ['de']
+    locales: ['de', 'en'],
+    localeConfigs: {
+      de:{
+        htmlLang: 'de-DE'
+      },
+      en:{
+        htmlLang: 'en-GB'
+      }
+    }
   },
 
   presets: [
@@ -56,9 +64,13 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'tutorials/Installation/VisualStudio',
+            docId: 'tutorials/Installation/Installation',
             position: 'left',
             label: 'Tutorials',
+          },
+          {
+            type: 'localeDropdown',
+            position: 'right'
           },
           {
             href: 'https://github.com/AntMeNet/AntMeClassic',

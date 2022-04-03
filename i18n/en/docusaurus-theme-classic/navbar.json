@@ -1,0 +1,10 @@
+{
+  "title": {
+    "message": "AntMe!",
+    "description": "The title in the navbar"
+  },
+  "item.label.Tutorials": {
+    "message": "Tutorials",
+    "description": "Navbar item with label Tutorials"
+  }
+}
