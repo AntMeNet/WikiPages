@@ -2,6 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import style from './feature.style.module.css';
 import Translate, {translate} from '@docusaurus/Translate';
+import Link from '@docusaurus/Link'
 const FeatureList = [
   {
     title: translate({
@@ -9,30 +10,30 @@ const FeatureList = [
       message: 'Installation',
       description: 'The label for the install card on the home page'
     }),
-    imgPath: '/img/150px-Skilllevel1.png',
-    url: '/docs/Tutorials/installation',
+    imgPath: 'img/150px-Skilllevel1.png',
+    url: 'docs/tutorials/installation',
   },
   {
     title: 'Ameisen programmieren',
-    imgPath: '/img/150px-Skilllevel2.png',
-    url: '/docs/Tutorials/installation',
+    imgPath: 'img/150px-Skilllevel2.png',
+    url: 'docs/tutorials/Spielstart',
   },
   {
     title: 'API',
-    imgPath: '/img/150px-Skilllevel3.png',
-    url: '/docs/api/index',
+    imgPath: 'img/150px-Skilllevel3.png',
+    url: 'docs/api/',
   },
 ];
 
 function Feature({imgPath, title, url}) {
   return (
     <div className='col' >
-      <a className={clsx('card shadow--md', style.card)} href={url}>
+      <Link className={clsx('card shadow--md', style.card)} to={url}>
         <div className={clsx("text--center", style.imageContainer)}>
           <img className={clsx(style.featureImg)} src={imgPath} />
         </div>
         <h3 className={clsx('card__footer text--center', style.card__title)}>{title}</h3>
-      </a>
+      </Link>
     </div>
   );
 }
