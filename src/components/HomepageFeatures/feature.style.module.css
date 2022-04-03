@@ -11,6 +11,7 @@
   border-width: 1px;
   border-style: solid;
   overflow: hidden;
+  margin: 1rem;
 }
 
 .card:hover{
