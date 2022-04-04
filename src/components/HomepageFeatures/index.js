@@ -20,7 +20,7 @@ const FeatureList = [
       description: 'The label for the progamming card on the home page'
     }),
     imgPath: 'img/150px-Skilllevel2.png',
-    url: 'docs/tutorials/Spielstart',
+    url: 'docs/tutorials/gamestart',
   },
   {
     title: translate({
@@ -29,7 +29,7 @@ const FeatureList = [
       description: 'The label for the commands card on the home page'
     }),
     imgPath: 'img/150px-Skilllevel3.png',
-    url: 'docs/api/',
+    url: 'docs/commands/',
   },
 ];
 
