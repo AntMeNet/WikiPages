@@ -1,0 +1,10 @@
+{
+  "link.item.label.Impressum": {
+    "message": "Imprint",
+    "description": "The label of footer link with label=Impressum linking to /impressum"
+  },
+  "copyright": {
+    "message": "Copyright © 2022 AntMe! GmbH",
+    "description": "The footer copyright"
+  }
+}
