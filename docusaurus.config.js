@@ -8,9 +8,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 const config = {
   title: 'AntMe!',
   tagline: 'Spielend Porgrammieren lernen',
-  url: 'https://antmenet.github.io',
+  url: 'https://wiki.antme.net',
   trailingSlash: false,
-  baseUrl: '/WikiPages/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
