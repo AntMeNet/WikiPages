@@ -19,11 +19,14 @@ const config = {
   
   i18n: {
     defaultLocale: 'de',
-    locales: ['de'],
+    locales: ['de', 'en'],
     localeConfigs: {
       de:{
         htmlLang: 'de-DE'
       },
+      en:{
+        htmlLang: 'en-GB'
+      }
     }
   },
 
@@ -34,7 +37,9 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: "https://github.com/AntMeNet/WikiPages/edit/main/",
+          editUrl: ({locale, versionDocsDirPath, docPath}) => {
+            return `https://github.com/AntMeNet/WikiPages/edit/main/${versionDocsDirPath}/${docPath}`;
+          },
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
         },
@@ -61,9 +66,13 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'tutorials/Installation/Installation',
+            docId: 'tutorials/installation/installation',
             position: 'left',
             label: 'Tutorials',
+          },
+          {
+            type: 'localeDropdown',
+            position: 'right'
           },          
           {
             href: 'https://github.com/AntMeNet/AntMeClassic',
@@ -77,7 +86,7 @@ const config = {
         links: [
           {
             label: 'Impressum',
-            to: '/impressum',
+            to: '/imprint',
           }
         ],
         copyright: `Copyright © ${new Date().getFullYear()} AntMe! GmbH`,
