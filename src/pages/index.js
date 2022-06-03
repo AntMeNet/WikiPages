@@ -22,7 +22,7 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      description="Das offizielle AntMe! Wiki">
+      description="The official AntMe! Wiki">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
