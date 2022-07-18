@@ -1,130 +1,142 @@
 ---
-title: Befehlsliste
+title: Commands
 ---
-Ameisen verstehen leider nicht jedes Wort, nur eine kleine Liste von Möglichkeiten.
 
-## Befehle
+Your ants understand you! But their vocabulary isn’t that large. The possibilities for communicating with them are listed below. 
 
-### Gehen
-Die Einheit von Längenangaben bei den folgenden Befehlen ist Schritte. Zum Vergleich: eine Ameise ist vier Schritte lang, das Spielfeld misst bei einem Spiel mit einem Spieler 1200 x 900 Schritte.
+## Methods
 
-|Befehl|Kurzbeschreibung|
+### Movement
+
+The unit of length for the following commands is steps. For reference: an ant is four steps long and the map for a single-player 
+game measures 1200 x 900 steps. 
+
+|Method|Description|
 |---|---|
-|GeheGeradeaus|Die Ameise geht geradeaus. Das Ziel der Ameise bleibt unangetastet. Wenn ein Wert angegeben wird, wird die Ameise wieder ihr Ziel anvisieren, nachdem sie die angegebene Entfernung zurückgelegt hat.|
-|GeheZuZiel|Die Ameise speichert das angegebene Ziel und geht dort hin.|
-|GeheWegVon|Die Ameise dreht sich in die Richtung die vom angegebenen Ziel weg zeigt und geht dann geradeaus. Das Ziel der Ameise bleibt unangetastet und es kann eine Entfernung angegeben werden.|
-|GeheZuBau|Die Ameise speichert den nächstgelegenen Bau als Ziel und geht dort hin.|
-|BleibStehen|Die Ameise bleibt stehen und vergisst ihr aktuelles Ziel. In der nächsten Runde wird das Ereignis Wartet() aufgerufen werden.|
+|GoForward|The ant moves forward. The ant's destination remains unaltered. If a value is specified, the ant will aim for its destination again as soon as it has travelled the specified distance.|
+|GoToDestination|The ant saves the specified destination and walks to it.|
+|GoAwayFrom|The ant turns in the direction opposite the specified destination and then walks straight ahead. The ant's destination remains unaltered and the walking distance can be specified.|
+|GoToAnthill|The ant saves the nearest anthill as its destination and walks towards it.|
+|Stop|The ant stands still and forgets its current destination. In the next round the result of Waiting() is called.|
 
-### Drehen
-Alle Angaben werden als ganze Winkel im Uhrzeigersinn in der Einheit Grad gemacht. 0 entspricht also rechts, 90 entspricht unten, 180 entspricht links, 270 entspricht oben und 360 entspricht wieder rechts. Die übergebenen Werte müssen sich nicht zwischen 0 und 359 befinden. Größere oder kleinere Werte werden automatisch umgerechnet.
+### Rotation
 
-Das Drehen einer Ameise hat immer Vorrang vor dem Gehen. D.h. wenn eine Ameise einen Dreh-Befehl bekommt, während sie einen Geh-Befehl noch nicht vollständig abgearbeitet hat, wird der Geh-Befehl unterbrochen und nach der Drehung fortgesetzt. Sich gleichzeitig drehen und gehen kann die Ameise nicht.
+All values are specified as whole angles measured in degrees proceeding clockwise. 0 thus means right, 90 is down, 180 is left, 
+270 is up and 360 is right again. The values do not need to be between 0 and 359. Larger or smaller values will be recalculated 
+automatically.
 
-|Befehl|Kurzbeschreibung|
+For an ant, turning always takes precedence over moving. Thus, if an ant receives a “turn” command before it has finished executing 
+a “go” command, the “go” command will be interrupted, the “turn” command will be executed instead, and then the “go” command will 
+be resumed. An ant cannot turn and walk at the same time. 
+
+|Method|Description|
 |---|---|
-|DreheInRichtung|Die Ameise dreht sich in die angegebene Richtung. Die Drehrichtung wird dabei automatisch bestimmt.|
-|DreheUmWinkel|Die Ameise dreht sich um den angegebenen Winkel. Positive Werte drehen die Ameise nach rechts, negative nach links.|
-|DreheUm|Die Ameise dreht sich um 180 Grad in die entgegengesetzte Richtung. Hat die selbe Wirkung wie DreheUmWinkel(180).|
-|DreheZuZiel|Die Ameise dreht sich in die Richtung des angegebenen Ziels.|
+|TurnToDirection|The ant turns in the specified direction. The angle around which it turns is determined automatically.|
+|TurnByDegrees|The ant turns itself around the specified angle. Positive values turn the ant to the right, negative values turn it to the left.|
+|TurnAround|The ant turns 180 degrees in the opposite direction. Has the same effect as TurnByDegrees(180).|
+|TurnToDestination|The ant turns in the direction of the specified destination.|
 
-### Nahrung
+### Food
 
-AntMe! verfügt über zwei unterschiedliche Nahrungsmittel: Zucker und Apfel (bzw. Obst). Beide lassen sich mit dem Befehlen Nimm aufnehmen, haben aber unterschiedliche Auswirkungen auf die Eigenschaften der Ameise. Zucker wird in Würfelchen aufgeteilt und sorgt für eine Erhöhung von AktuelleLast. Äpfel hingegen müssen von mehreren Ameisen getragen werden und lassen sich anhand der Eigenschaft AktuelleLast erkennen.
+AntMe! has two different food sources: sugar and apples (or fruit). Both can be picked up with the Take command, but they have 
+different effects on the ant's properties. Sugar is divided into individual cubes and each cube causes an increase in CurrentLoad. 
+Apples, on the other hand, must be carried by several ants and can be recognized by the property CarryingFruit.
 
-|Befehl|Kurzbeschreibung|
+|Method|Description|
 |---|---|
-|Nimm|Die Ameise nimmt die angegebene Nahrung auf. Bei einem Zuckerhaufen nimmt sie so viel wie möglich weg, bis sie ihre maximale Last erreicht hat (siehe AktuelleLast und MaximaleLast). Im Falle eines Obststückes beginnt die Ameise das Obst zu tragen (siehe GetragenesObst).|
-|LasseNahrungFallen|Die Ameise lässt die gerade getragene Nahrung fallen. Zucker geht dabei verloren, Äpfel bleiben liegen und können wieder aufgenommen werden. Der Befehl muss nicht ausgeführt werden um Nahrung im Bau abzuliefern. Das passiert dort automatisch.|
+|Take|The ant picks up the specified food. In the case of a mound of sugar, it takes as much as possible until it reaches its maximum load (see CurrentLoad and MaximumLoad). In the case of a piece of fruit, the ant begins carrying the fruit (see CarryingFruit).|
+|Drop|The ant drops the food that it is currently carrying. Sugar is lost while apples remain where they fall and can be picked up again later. The command is not necessary when delivering food to an anthill - that occurs automatically.|
 
-### Markierungen
+### Communication
 
-Markierungen sind für Ameisen die primäre Kommunikationsmethode. Ameisen, die anderen Ameisen etwas mitteilen wollen, nutzen Markierungen um Informationen weiterzugeben.
+Markers are the primary means of communication for ants. Ants that want to communicate something to other ants use markers to pass on information.
 
-|Befehl|Kurzbeschreibung|
+|Method|Description|
 |---|---|
-|SprüheMarkierung|Die Ameise sprüht an der aktuellen Stelle eine Duftmarkierung. Mögliche Parameter sind eine in der Markierung hinterlegte Information (diese kann im Ereignis Sieht(Markierung) über markierung.Information ausgelesen werden) und die Ausbreitung der Markierung. Je größer die Ausbreitung, desto schneller verschwindet die Markierung wieder.|
+|MakeMark|The ant sprays a scent marker at the current location. The possible parameters are data contained in the marker (these can be read out of the result of Spots(Marker) via marker.Information) and how far the maker spreads out. The farther the marker spreads out, the faster it will disappear.|
 
-### Kampf
+### Combat
 
-Zwar verfolgt AntMe! einen eher friedlichen Absatz, dennoch haben Ameisen auch in diesem Spiel natürliche Feinde - die Wanzen. Wanzen und gegnerische Ameisen können aktiv angegriffen werden.
+AntMe! is a peaceful approach to learning how to code, but even in this game, ants and programmers alike have to face their natural 
+enemies—bugs. It is possible to actively attack bugs and enemy ants. You'll find more information about combat on the Ant Development page.
 
-|Befehl|Kurzbeschreibung|
+|Method|Description|
 |---|---|
-|GreifeAn|Die Ameise speichert die angegebene Wanze oder die angegebene feindliche Ameise als Ziel und geht dort hin. Wenn die Ameise angekommen ist, beginnt der Kampf.|
+|Attack|The ant saves the specified bug or the specified enemy ant as its destination and walks toward it. When the ant arrives at its destination, it begins to fight.|
 
-### Fehlersuche
+### Debug
 
-Wenn Ameisen mal nicht das tun, was sie sollen, braucht es ein paar Hilfsmittel zur Fehlersuche. Neben den Werkzeugen aus Visual Studio gibt es auch von AntMe! ein bisschen Hilfe.
+If your ants aren't doing what they're supposed to, there are a couple of resources you can use to try to find out why. AntMe! 
+provides some special tools in addition to those included in Visual Studio.
 
-|Befehl|Kurzbeschreibung|
+|Method|Description|
 |---|---|
-|Denke|Mit Hilfe dieses Befehls gibt die Ameise Denkblasen aus, die zur Fehlersuche eingesetzt werden können.|
+|Think|This command causes the ant to display thought bubbles that can be used for troubleshooting and debugging.|
 
-## Eigenschaften
+## Properties
 
-Eigenschaften erlauben das Abfragen von Zuständen und Werten aus Ameisen und anderen Spielelementen.
+Properties allow you to examine the conditions and values of ants and other game elements.
 
-### Kastenabhängig
+### Caste-Related
 
-Die folgenden Werte einer Ameise werden von ihrer Kaste bestimmt.
+The following values of an ant are determined by its caste.
 
-|Eigenschaft|Kurzbeschreibung|
+|Property|Description|
 |---|---|
-|MaximaleEnergie|Gibt die maximale Energie der Ameise an. Die Einheit ist Lebenspunkte.|
-|MaximaleGeschwindigkeit|Gibt die maximale Geschwindigkeit der Ameise an. Die Einheit ist Schritte pro Runde.|
-|MaximaleLast|Gibt die maximal tragbare Last der Ameise an. Die Einheit ist Nahrungspunkte. Dieser Wert bestimmt, wie viel Zucker die Ameise auf einmal tragen kann und wie schnell sie ohne die Hilfe anderer Ameisen einen Apfel tragen kann.|
-|Reichweite|Gibt die Reichweite in Schritten an die die Ameise zurücklegen kann, bevor sie vor Hunger stirbt. Nachdem die Ameise ein Drittel dieser Strecke zurückgelegt hat, wird das Ereignis WirdMüde() aufgerufen und der Wert von IstMüde auf wahr gesetzt. Siehe ZurückgelegteStrecke.|
-|Angriff|Gibt den Angriffswert der Ameise an. Der Angriffswert bestimmt wie viele Lebenspunkte die Ameise einem Gegner in jeder Runde abzieht. Die Einheit ist Lebenspunkte.|
-|Sichtweite|Gibt den Wahrnehmungsradius der Ameise in Schritten an. Dieser Radius bestimmt wie weit die Ameise von Spielelementen wie z.B. Zucker entfernt sein muss damit die Ameise sie sieht. Die Blickrichtung der Ameise spielt dabei keine Rolle.|
-|Drehgeschwindigkeit|Gibt die Geschwindigkeit an mit der sich eine Ameise drehen kann. Die Einheit ist Grad pro Runde.|
+|MaximumEnergy|Returns the ant's maximum energy. The unit is hit points.|
+|MaximumSpeed|Returns the ant's maximum speed. The unit is steps per round.|
+|MaximumLoad|Returns the maximum load that the ant can bear. The unit is food points. This value determines how much sugar the ant can carry at once and how fast it can carry an apple without the help of other ants.|
+|Range|Specifies the distance in steps that the ant can travel before it dies of hunger. After the ant has travelled a third of the value, the event GettingTired() is called and the value of IsTired is set to “true”. (See WalkedRange).|
+|Strength|Specifies the ant's attack value. The attack value determines how many hit points the ant deducts from an enemy in each round. The unit is hit points.|
+|Viewrange|Specifies the ant's visual range in steps. This range determines how far the ant must be from game elements like sugar in order for the ant to see them. The direction that the ant is facing does not play a role (ants have 360 vision in this game).|
+|RotationSpeed|Specifies the speed with which an ant can turn. The unit is degrees per round.|
 
-### Sonstiges
-Die folgenden Werte repräsentieren den aktuellen Zustand einer Ameise.
+### Misc
 
-|Eigenschaft|Kurzbeschreibung|
+|Property|Description|
 |---|---|
-|AktuelleEnergie|Gibt die aktuelle Energie der Ameise an. Die Einheit ist Lebenspunkte. Hat die Ameise 0 Lebenspunkte oder weniger, dann stirbt sie. Dieser Wert ist immer kleiner oder gleich MaximaleEnergie.|
-|AktuelleGeschwindigkeit|Gibt die aktuell mögliche Geschwindigkeit der Ameise an. Die Einheit ist Schritte pro Runde. Der Wert wird von der aktuellen Last der Ameise beeinflusst. Ameisen die unter voller Last bewegt werden, können nur die Hälfte ihrer Maximalgeschwindigkeit erreichen. Diese Eigenschaft liefert immer einen Wert größer 0 zurück, auch wenn die Ameise still steht. Dieser Wert ist immer kleiner oder gleich MaximaleGeschwindigkeit.|
-|AktuelleLast|Gibt die aktuelle Last an, die die Ameise gerade trägt. Die Einheit ist Nahrungspunkte. Dieser Wert ist immer kleiner oder gleich MaximaleLast.|
-|WanzenInSichtweite|Gibt die Anzahl der Wanzen im Wahrnehmungsradius der Ameise zurück. Das Ergebnis dieser Berechnung ist von der Sichtweite der Ameise abhängig.|
-|AnzahlFremderAmeisenInSichtweite|Gibt die Anzahl der feindlichen Ameisen im Wahrnehmungsradius der Ameise zurück. Das Ergebnis dieser Berechnung ist von der Sichtweite der Ameise abhängig.|
-|AnzahlAmeisenInSichtweite|Gibt die Anzahl der Ameisen desselben Volkes des im Wahrnehmungsradius der Ameise zurück. Das Ergebnis dieser Berechnung ist von der Sichtweite der Ameise abhängig.|
-|AnzahlAmeisenDerSelbenKasteInSichtweite|Gibt die Anzahl der befreundeten Ameisen desselben Volkes und derselben Kaste im Wahrnehmungsradius der Ameise zurück. Das Ergebnis dieser Berechnung ist von der Sichtweite der Ameise abhängig.|
-|AnzahlAmeisenDesTeamsInSichtweite|Gibt die Anzahl der befreundeten Ameisen desselben Teams im Wahrnehmungsradius der Ameise zurück. Das Ergebnis dieser Berechnung ist von der Sichtweite der Ameise abhängig.|
-|EntfernungZuBau|Gibt die Entfernung in Schritten zum nächstgelegenen befreundeten Ameisenbau an.|
-|GetragenesObst|Gibt das aktuell getragene Obststück zurück. Wenn die Ameise gerade kein Obst trägt, zeigt dieser Verweis ins Leere.|
-|Kaste|Gibt des Namen der Kaste der Ameise zurück.|
-|Ziel|Gibt das aktuelle Ziel der Ameise zurück. Wenn die Ameise gerade kein Ziel hat, zeigt dieser Verweis ins Leere.|
-|IstMüde|Gibt an ob die Ameise müde ist. Die Ameise wird müde, sobald sie ein Drittel ihrer maximalen Reichweite zurückgelegt hat. Nach dem Übergang des Wertes dieser Eigenschaft von falsch auf wahr wird das Ereignis WirdMüde() aufgerufen.|
-|RestStrecke|Gibt an wie viele Schritte die Ameise noch geradeaus gehen wird, bevor sie wieder ihr Ziel anvisiert. Dieser Wert wird in jeder Runde um AktuelleGeschwindigkeit verringert.|
-|RestWinkel|Gibt an wie viele Grad die Ameise sich noch drehen wird, bevor sie wieder geradeaus gehen wird. Dieser Wert wird in jeder Runde um DrehGeschwindigkeit verringert.|
-|Richtung|Gibt die Blickrichtung der Ameise auf dem Spielfeld an.|
-|Angekommen|Gibt an ob die Ameise an ihrem Ziel angekommen ist.|
-|ZurückgelegteStrecke|Diese Eigenschaft gibt die Gesamtanzahl an Schritten zurück die die Ameise seit ihrem letzten Besuch in einem Ameisenbau zurückgelegt hat. Siehe Reichweite|
+|CurrentEnergy|Returns the ant's current energy. The unit is hit points. If an ant has 0 hit points or fewer, it dies. This value is always less than or equal to MaximumEnergy.|
+|CurrentSpeed|Returns the ant's current possible speed. The unit is steps per round. The value is influenced by the ant's current load. Ants that are carrying a full load can only travel at half of their maximum speed. The property always returns a value greater than 0, even if the ant is standing still. This value is always less than or equal to MaximumSpeed.|
+|CurrentLoad|Returns the weight of the load that the ant is currently carrying. The unit is food points. This value is always smaller than or equal to MaximumLoad.|
+|BugsInViewrange|Returns the number of bugs in the ant's 360° visual range. The result of this calculation depends on the ant's visual range.|
+|ForeignAntsInViewrange|Returns the number of enemy ants in the ant's 360° visual range. The result of this calculation depends on the ant's visual range.|
+|FriendlyAntsInViewrange|Returns the number of friendly ants from the same colony in the ant's 360° visual range. The result of the calculation depends on the ant's visual range.|
+|FriendlyAntsFromSameCasteInViewrange|Returns the number of friendly ants from the same colony and the same caste in the ant's 360° visual range. The result of this calculation depends on the ant's visual range.|
+|TeamAntsInViewrange|Returns the number of friendly ants from the same team in the ant's 360° visual range. The result of this calculation depends on the ant's visual range.|
+|DistanceToAnthill|Returns the distance in steps to the nearest friendly anthill.|
+|CarryingFruit|Returns the piece of fruit the ant is currently carrying. If the ant is not carrying a piece of fruit, the value returned is null.|
+|Caste|Returns the name of the ant's caste.|
+|Destination|Returns the ant's current destination. If the ant currently has no destination, the value returned is null.|
+|IsTired|Returns whether the ant is tired. The ant becomes tired as soon as it has travelled a third of its maximum range. Once this value has been exceeded, this property changes from false to true and the event GettingTired() is called.|
+|DistanceToDestination|Returns how many steps forward the ant must go before it reaches its destination. This value is reduced each round by CurrentSpeed.|
+|DegreesToDestination|Returns how many degrees the ant still has to turn before it moves forward again. This value is reduced each round by RotationSpeed.|
+|Direction|Returns the direction that the ant is facing on the map.|
+|ReachedDestination|Returns whether the ant has reached its destination or not.|
+|WalkedRange|This property returns the total number of steps that the ant has travelled since its last visit to an anthill. See Range.|
 
-## Hilfsmethoden
+## Helper
 
-Dieser Bereich behandelt Methoden, die neben den Befehlen der Ameise weitere Hilfe anbieten.
+This section covers methods that are helpful but that are not commands issued to ants.
 
-### Nahrung
+### Food
 
-Die folgenden Methoden erlauben die Untersuchung von Nahrungsmitteln.
+The following methods help with the evaluation of food sources.
 
-|Ereignis|Kurzbeschreibung|
+|Method|Description|
 |---|---|
-|BrauchtNochTräger|Ermittelt ob das angegebene Obst noch mehr Ameisen zum Tragen benötigt.|
+|NeedsCarrier|Evaluates if the specified fruit needs more ants to carry it.|
 
 ### Navigation
 
-Um in den folgenden Befehlen Bezug auf die aktuelle Ameise zu nehmen, wird in C# das Schlüsselwort this verwendet, in Visual Basic das Schlüsselwort Me.
+Special keywords are required to refer to the current ant in the following commands. C# uses the keyword “this” and Visual Basic uses the keyword “Me”.
 
-|Ereignis|Kurzbeschreibung|
+|Method|Description|
 |---|---|
-|Koordinate.BestimmeEntfernung|Bestimmt die Entfernung in Schritten zwischen zwei angegebenen Spielelementen.|
-|Koordinate.BestimmeRichtung|Bestimmt vom ersten angegebenen Spielelement aus die Blickrichtung zum zweiten angegebenen Spielelement.|
+|Coordinate.GetDistanceBetween|Returns the distance in steps between two specified game elements.|
+|Coordinate.GetDegreesBetween|Returns the direction from the first game element specified to the second game element specified.|
 
-### Zufallszahlen
-|Ereignis|Kurzbeschreibung|
+### Random Numbers
+
+|Method|Description|
 |---|---|
-|Zufall.Zahl|Erzeugt eine zufällige Zahl zwischen den angegebenen Werten. Wenn nur ein Parameter angegeben wird, wird eine Zahl zwischen 0 und dem angegebenen Wert - 1 bestimmt, wenn zwei Parameter angegeben werden, wird eine Zahl zwischen dem unteren Wert und dem oberen Wert - 1 bestimmt.|
+|RandomNumber.Number|Generates a random number within the specified limits. If only one parameter is specified, a random number will be generated between 0 and the specified limit -1. If two parameters are specified, a number between will be generated between the lower limit and the upper limit -1.|

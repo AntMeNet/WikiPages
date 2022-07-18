@@ -1,0 +1,131 @@
+---
+title: Befehlsliste
+---
+
+Ameisen verstehen leider nicht jedes Wort, nur eine kleine Liste von Möglichkeiten.
+
+## Befehle
+
+### Gehen
+Die Einheit von Längenangaben bei den folgenden Befehlen ist Schritte. Zum Vergleich: eine Ameise ist vier Schritte lang, das Spielfeld misst bei einem Spiel mit einem Spieler 1200 x 900 Schritte.
+
+|Befehl|Kurzbeschreibung|
+|---|---|
+|GeheGeradeaus|Die Ameise geht geradeaus. Das Ziel der Ameise bleibt unangetastet. Wenn ein Wert angegeben wird, wird die Ameise wieder ihr Ziel anvisieren, nachdem sie die angegebene Entfernung zurückgelegt hat.|
+|GeheZuZiel|Die Ameise speichert das angegebene Ziel und geht dort hin.|
+|GeheWegVon|Die Ameise dreht sich in die Richtung die vom angegebenen Ziel weg zeigt und geht dann geradeaus. Das Ziel der Ameise bleibt unangetastet und es kann eine Entfernung angegeben werden.|
+|GeheZuBau|Die Ameise speichert den nächstgelegenen Bau als Ziel und geht dort hin.|
+|BleibStehen|Die Ameise bleibt stehen und vergisst ihr aktuelles Ziel. In der nächsten Runde wird das Ereignis Wartet() aufgerufen werden.|
+
+### Drehen
+Alle Angaben werden als ganze Winkel im Uhrzeigersinn in der Einheit Grad gemacht. 0 entspricht also rechts, 90 entspricht unten, 180 entspricht links, 270 entspricht oben und 360 entspricht wieder rechts. Die übergebenen Werte müssen sich nicht zwischen 0 und 359 befinden. Größere oder kleinere Werte werden automatisch umgerechnet.
+
+Das Drehen einer Ameise hat immer Vorrang vor dem Gehen. D.h. wenn eine Ameise einen Dreh-Befehl bekommt, während sie einen Geh-Befehl noch nicht vollständig abgearbeitet hat, wird der Geh-Befehl unterbrochen und nach der Drehung fortgesetzt. Sich gleichzeitig drehen und gehen kann die Ameise nicht.
+
+|Befehl|Kurzbeschreibung|
+|---|---|
+|DreheInRichtung|Die Ameise dreht sich in die angegebene Richtung. Die Drehrichtung wird dabei automatisch bestimmt.|
+|DreheUmWinkel|Die Ameise dreht sich um den angegebenen Winkel. Positive Werte drehen die Ameise nach rechts, negative nach links.|
+|DreheUm|Die Ameise dreht sich um 180 Grad in die entgegengesetzte Richtung. Hat die selbe Wirkung wie DreheUmWinkel(180).|
+|DreheZuZiel|Die Ameise dreht sich in die Richtung des angegebenen Ziels.|
+
+### Nahrung
+
+AntMe! verfügt über zwei unterschiedliche Nahrungsmittel: Zucker und Apfel (bzw. Obst). Beide lassen sich mit dem Befehlen Nimm aufnehmen, haben aber unterschiedliche Auswirkungen auf die Eigenschaften der Ameise. Zucker wird in Würfelchen aufgeteilt und sorgt für eine Erhöhung von AktuelleLast. Äpfel hingegen müssen von mehreren Ameisen getragen werden und lassen sich anhand der Eigenschaft AktuelleLast erkennen.
+
+|Befehl|Kurzbeschreibung|
+|---|---|
+|Nimm|Die Ameise nimmt die angegebene Nahrung auf. Bei einem Zuckerhaufen nimmt sie so viel wie möglich weg, bis sie ihre maximale Last erreicht hat (siehe AktuelleLast und MaximaleLast). Im Falle eines Obststückes beginnt die Ameise das Obst zu tragen (siehe GetragenesObst).|
+|LasseNahrungFallen|Die Ameise lässt die gerade getragene Nahrung fallen. Zucker geht dabei verloren, Äpfel bleiben liegen und können wieder aufgenommen werden. Der Befehl muss nicht ausgeführt werden um Nahrung im Bau abzuliefern. Das passiert dort automatisch.|
+
+### Markierungen
+
+Markierungen sind für Ameisen die primäre Kommunikationsmethode. Ameisen, die anderen Ameisen etwas mitteilen wollen, nutzen Markierungen um Informationen weiterzugeben.
+
+|Befehl|Kurzbeschreibung|
+|---|---|
+|SprüheMarkierung|Die Ameise sprüht an der aktuellen Stelle eine Duftmarkierung. Mögliche Parameter sind eine in der Markierung hinterlegte Information (diese kann im Ereignis Sieht(Markierung) über markierung.Information ausgelesen werden) und die Ausbreitung der Markierung. Je größer die Ausbreitung, desto schneller verschwindet die Markierung wieder.|
+
+### Kampf
+
+Zwar verfolgt AntMe! einen eher friedlichen Absatz, dennoch haben Ameisen auch in diesem Spiel natürliche Feinde - die Wanzen. Wanzen und gegnerische Ameisen können aktiv angegriffen werden.
+
+|Befehl|Kurzbeschreibung|
+|---|---|
+|GreifeAn|Die Ameise speichert die angegebene Wanze oder die angegebene feindliche Ameise als Ziel und geht dort hin. Wenn die Ameise angekommen ist, beginnt der Kampf.|
+
+### Fehlersuche
+
+Wenn Ameisen mal nicht das tun, was sie sollen, braucht es ein paar Hilfsmittel zur Fehlersuche. Neben den Werkzeugen aus Visual Studio gibt es auch von AntMe! ein bisschen Hilfe.
+
+|Befehl|Kurzbeschreibung|
+|---|---|
+|Denke|Mit Hilfe dieses Befehls gibt die Ameise Denkblasen aus, die zur Fehlersuche eingesetzt werden können.|
+
+## Eigenschaften
+
+Eigenschaften erlauben das Abfragen von Zuständen und Werten aus Ameisen und anderen Spielelementen.
+
+### Kastenabhängig
+
+Die folgenden Werte einer Ameise werden von ihrer Kaste bestimmt.
+
+|Eigenschaft|Kurzbeschreibung|
+|---|---|
+|MaximaleEnergie|Gibt die maximale Energie der Ameise an. Die Einheit ist Lebenspunkte.|
+|MaximaleGeschwindigkeit|Gibt die maximale Geschwindigkeit der Ameise an. Die Einheit ist Schritte pro Runde.|
+|MaximaleLast|Gibt die maximal tragbare Last der Ameise an. Die Einheit ist Nahrungspunkte. Dieser Wert bestimmt, wie viel Zucker die Ameise auf einmal tragen kann und wie schnell sie ohne die Hilfe anderer Ameisen einen Apfel tragen kann.|
+|Reichweite|Gibt die Reichweite in Schritten an die die Ameise zurücklegen kann, bevor sie vor Hunger stirbt. Nachdem die Ameise ein Drittel dieser Strecke zurückgelegt hat, wird das Ereignis WirdMüde() aufgerufen und der Wert von IstMüde auf wahr gesetzt. Siehe ZurückgelegteStrecke.|
+|Angriff|Gibt den Angriffswert der Ameise an. Der Angriffswert bestimmt wie viele Lebenspunkte die Ameise einem Gegner in jeder Runde abzieht. Die Einheit ist Lebenspunkte.|
+|Sichtweite|Gibt den Wahrnehmungsradius der Ameise in Schritten an. Dieser Radius bestimmt wie weit die Ameise von Spielelementen wie z.B. Zucker entfernt sein muss damit die Ameise sie sieht. Die Blickrichtung der Ameise spielt dabei keine Rolle.|
+|Drehgeschwindigkeit|Gibt die Geschwindigkeit an mit der sich eine Ameise drehen kann. Die Einheit ist Grad pro Runde.|
+
+### Sonstiges
+Die folgenden Werte repräsentieren den aktuellen Zustand einer Ameise.
+
+|Eigenschaft|Kurzbeschreibung|
+|---|---|
+|AktuelleEnergie|Gibt die aktuelle Energie der Ameise an. Die Einheit ist Lebenspunkte. Hat die Ameise 0 Lebenspunkte oder weniger, dann stirbt sie. Dieser Wert ist immer kleiner oder gleich MaximaleEnergie.|
+|AktuelleGeschwindigkeit|Gibt die aktuell mögliche Geschwindigkeit der Ameise an. Die Einheit ist Schritte pro Runde. Der Wert wird von der aktuellen Last der Ameise beeinflusst. Ameisen die unter voller Last bewegt werden, können nur die Hälfte ihrer Maximalgeschwindigkeit erreichen. Diese Eigenschaft liefert immer einen Wert größer 0 zurück, auch wenn die Ameise still steht. Dieser Wert ist immer kleiner oder gleich MaximaleGeschwindigkeit.|
+|AktuelleLast|Gibt die aktuelle Last an, die die Ameise gerade trägt. Die Einheit ist Nahrungspunkte. Dieser Wert ist immer kleiner oder gleich MaximaleLast.|
+|WanzenInSichtweite|Gibt die Anzahl der Wanzen im Wahrnehmungsradius der Ameise zurück. Das Ergebnis dieser Berechnung ist von der Sichtweite der Ameise abhängig.|
+|AnzahlFremderAmeisenInSichtweite|Gibt die Anzahl der feindlichen Ameisen im Wahrnehmungsradius der Ameise zurück. Das Ergebnis dieser Berechnung ist von der Sichtweite der Ameise abhängig.|
+|AnzahlAmeisenInSichtweite|Gibt die Anzahl der Ameisen desselben Volkes des im Wahrnehmungsradius der Ameise zurück. Das Ergebnis dieser Berechnung ist von der Sichtweite der Ameise abhängig.|
+|AnzahlAmeisenDerSelbenKasteInSichtweite|Gibt die Anzahl der befreundeten Ameisen desselben Volkes und derselben Kaste im Wahrnehmungsradius der Ameise zurück. Das Ergebnis dieser Berechnung ist von der Sichtweite der Ameise abhängig.|
+|AnzahlAmeisenDesTeamsInSichtweite|Gibt die Anzahl der befreundeten Ameisen desselben Teams im Wahrnehmungsradius der Ameise zurück. Das Ergebnis dieser Berechnung ist von der Sichtweite der Ameise abhängig.|
+|EntfernungZuBau|Gibt die Entfernung in Schritten zum nächstgelegenen befreundeten Ameisenbau an.|
+|GetragenesObst|Gibt das aktuell getragene Obststück zurück. Wenn die Ameise gerade kein Obst trägt, zeigt dieser Verweis ins Leere.|
+|Kaste|Gibt des Namen der Kaste der Ameise zurück.|
+|Ziel|Gibt das aktuelle Ziel der Ameise zurück. Wenn die Ameise gerade kein Ziel hat, zeigt dieser Verweis ins Leere.|
+|IstMüde|Gibt an ob die Ameise müde ist. Die Ameise wird müde, sobald sie ein Drittel ihrer maximalen Reichweite zurückgelegt hat. Nach dem Übergang des Wertes dieser Eigenschaft von falsch auf wahr wird das Ereignis WirdMüde() aufgerufen.|
+|RestStrecke|Gibt an wie viele Schritte die Ameise noch geradeaus gehen wird, bevor sie wieder ihr Ziel anvisiert. Dieser Wert wird in jeder Runde um AktuelleGeschwindigkeit verringert.|
+|RestWinkel|Gibt an wie viele Grad die Ameise sich noch drehen wird, bevor sie wieder geradeaus gehen wird. Dieser Wert wird in jeder Runde um DrehGeschwindigkeit verringert.|
+|Richtung|Gibt die Blickrichtung der Ameise auf dem Spielfeld an.|
+|Angekommen|Gibt an ob die Ameise an ihrem Ziel angekommen ist.|
+|ZurückgelegteStrecke|Diese Eigenschaft gibt die Gesamtanzahl an Schritten zurück die die Ameise seit ihrem letzten Besuch in einem Ameisenbau zurückgelegt hat. Siehe Reichweite|
+
+## Hilfsmethoden
+
+Dieser Bereich behandelt Methoden, die neben den Befehlen der Ameise weitere Hilfe anbieten.
+
+### Nahrung
+
+Die folgenden Methoden erlauben die Untersuchung von Nahrungsmitteln.
+
+|Ereignis|Kurzbeschreibung|
+|---|---|
+|BrauchtNochTräger|Ermittelt ob das angegebene Obst noch mehr Ameisen zum Tragen benötigt.|
+
+### Navigation
+
+Um in den folgenden Befehlen Bezug auf die aktuelle Ameise zu nehmen, wird in C# das Schlüsselwort this verwendet, in Visual Basic das Schlüsselwort Me.
+
+|Ereignis|Kurzbeschreibung|
+|---|---|
+|Koordinate.BestimmeEntfernung|Bestimmt die Entfernung in Schritten zwischen zwei angegebenen Spielelementen.|
+|Koordinate.BestimmeRichtung|Bestimmt vom ersten angegebenen Spielelement aus die Blickrichtung zum zweiten angegebenen Spielelement.|
+
+### Zufallszahlen
+|Ereignis|Kurzbeschreibung|
+|---|---|
+|Zufall.Zahl|Erzeugt eine zufällige Zahl zwischen den angegebenen Werten. Wenn nur ein Parameter angegeben wird, wird eine Zahl zwischen 0 und dem angegebenen Wert - 1 bestimmt, wenn zwei Parameter angegeben werden, wird eine Zahl zwischen dem unteren Wert und dem oberen Wert - 1 bestimmt.|
