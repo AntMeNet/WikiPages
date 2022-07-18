@@ -16,7 +16,7 @@ const FeatureList = [
   {
     title: translate({
       id: 'homepage.programming',
-      message: 'Ameisen programmieren',
+      message: 'Program ants',
       description: 'The label for the progamming card on the home page'
     }),
     imgPath: 'img/150px-Skilllevel2.png',
@@ -25,7 +25,7 @@ const FeatureList = [
   {
     title: translate({
       id: 'homepage.commands',
-      message: 'Befehle',
+      message: 'Commands',
       description: 'The label for the commands card on the home page'
     }),
     imgPath: 'img/150px-Skilllevel3.png',
