@@ -3,26 +3,33 @@ title: Collect food
 sidebar_position: 3
 ---
 
-In diesem Tutorial lernst du, wie du deinen Ameisen beibringst, sich zu bewegen und Nahrung zu sammeln.
+# Hey Ants - Go Do Stuff!
 
-Diese Vorgaben geben wir in der Entwicklungsumgebung ein – wir programmieren die Ameisen, das auszuführen, was wir ihnen vorgeben.
+In this lesson you will learn how to instruct your ants to go out and gather food.
 
-Unsere frisch erstellte Ameisenkolonie im Sandkasten ist in der Programmierung eine sogenannte Klasse. Darunter versteht man einen Plan, der festlegt, wie sich mehrere ähnliche Objekte verhalten sollen. Dieser Plan beschreibt Attribute (Eigenschaften) und Methoden (Verhaltensweisen) der Objekte.
+We can program the ants by entering and editing certain parameters in the development environment. When we run the updated program, 
+the ants will behave the way we've instructed them to.
 
-Bei AntMe! sind Objekte die Ameisen. Indem wir ihre Klasse bearbeiten, legen wir ihre Verhaltensweisen fest. Zunächst wollen wir sie dazu bringen, sich zu bewegen.
-Suche dazu auf der rechten Seite im Solution Explorer die Zeile AlphaClass.cs und klicke sie.
+Our newly created ant colony in the sandbox is what programmers refer to as a “class”. A class is a template or plan that specifies 
+how several similar objects should behave. This template describes the objects' attributes and methods. (“Attribute” and “method” 
+both have special meanings in programming. We'll talk about them later.)
+
+“Objects” are specific instances of a class. Our class in AntMe! is the anthill and the objects are the ants themselves. We can specify 
+how they should behave by editing their class. First we want to teach them how to move. Find the “AlphaClass.cs” heading in the Solution 
+Explorer on the right and click on it. 
 
 ![](/img/tutorials/nahrungssuche/Lektion4_1.png)
 
-Damit öffnest du im Code Editor in der Bildschirmmitte die programmierbare Klasse unserer Kolonie „Alpha“. Im unteren Teil siehst du die fünf Blöcke Kasten, Fortbewegung, Nahrung, Kommunikation und Kampf. Einen solchen Block nennt man „Methode“. 
-Als Methoden bezeichnet man Unterprogramme, die das Verhalten von Objekten beschreiben. 
-Indem man einem einzelnen Objekt vorgibt, wie er sich verhalten soll, können Objekte untereinander in Verbindung treten. 
-Genau das sollen unsere Ameisen jetzt leisten, sie sollen ausschwärmen und nach Nahrung suchen.
-
+That will open a view in the Code Editor in the middle of the screen that shows the source code that makes up the class of our colony, 
+Alpha. In the lower part you'll see five blocks of code, one each for Castes, Movement, Food, Communication and Combat. We call such 
+blocks “methods”. Methods are sub-programs that describe the behavior of objects. Based on these instructions on how to behave, objects 
+can interact with each other, both behind the scenes in the code and onscreen in the game. The first instruction that we want to give to 
+our ants is to leave the anthill and search for food.
 
 ![](/img/tutorials/nahrungssuche/Lektion4_2.png)
 
-Fortbewegung gibt den Ameisen vor, wie sie sich bewegen sollen. Klicke nun auf das kleine Pluszeichen links von Fortbewegung und schreibe den folgenden Programmbefehl bei „Wartet ( )“ in die Zeile zwischen die { }:
+The Movement class tells the ants how to move. Click on the little “+” sign to the left of “Movement” and insert the following command 
+in “Wait()” in the row between the brackets { }: 
 
 ```cs
 public override void Wartet()
@@ -31,16 +38,18 @@ public override void Wartet()
 }
 ```
 
-Das sieht dann im Editor insgesamt so aus:
+The whole thing will look like this in the editor: 
 
 ![](/img/tutorials/nahrungssuche/Lektion4_4.png)
 
-Klicke nun auf die grüne „Play“-Taste in der Entwicklungsumgebung, um die AntMe!-3D-Ansicht zu starten. 
-Jetzt wirkt sich dein Programmierbefehl „gehe gerade aus“ in der Spielwelt aus. Schon schwärmen die Ameisen aus dem Nest und verteilen sich im Sandkasten.
+When you're done, click the green “Play” button in the development environment to start AntMe!'s 3D view. Your programming command to 
+“GoStraightAhead” will now have an effect on the game world. The ants will swarm out of the anthill and fan out across the sandbox. 
 
 ![](/img/tutorials/nahrungssuche/Lektion4_5.png)
 
-Im Moment rennen unsere Ameisen ziellos durch die Gegend. Dies änderst du, indem du sie auf Nahrungssuche schickst.
+At the moment, our ants are just kind of running aimlessly around the sandbox. You can change that by telling them to search for food. 
+
+Find the “See” method for sugar under “Food”. It looks like this:
 
 ```cs
 public override void Sieht(Zucker zucker)
@@ -49,7 +58,7 @@ public override void Sieht(Zucker zucker)
 }
 ```
 
-Ändere die Methode nun wie folgt ab:
+Now change the method like this: 
 
 ```cs
 public override void Sieht(Zucker zucker)
@@ -61,9 +70,12 @@ public override void Sieht(Zucker zucker)
 }
 ```
 
-Damit gibst du deinen Ameisen vor, dass sie sich zu einem Zuckerhaufen bewegen sollen, sobald sie ihn sehen. Dies tun sie aber nur unter der Bedingung, wenn („if“) ihre aktuelle Last = 0 ist, also wenn sie noch keine Last tragen.
+You just instructed the ants to move towards a mound of sugar as soon as they see one. But they'll only do so if their current 
+load = 0—that is, if they aren't already carrying something.
 
-Suche dir nun die Methode „Sieht“, die für das Obst zuständig ist. Ändere sie genau so ab wie auf dem letzten Bild beschrieben, außer dass du in die Klammern (obst) anstelle von (zucker) setzt. 
+Now look for the “See” method for fruit. Make the same change to it, except with (fruit) in the parentheses instead of (sugar). 
+This tells the ants to move towards a piece of fruit instead of towards a mound of sugar. Just as before, they'll only do so if 
+that they aren't already carrying something.
 
 ```cs
 public override void Sieht(Obst obst)
@@ -75,16 +87,14 @@ public override void Sieht(Obst obst)
 }
 ```
 
-Der Unterschied besteht darin, dass die Ameisen jetzt zu einem Obststück laufen anstelle eines Zuckerhaufens. Auch das passiert unter der Voraussetzung, dass sie noch keine Last geladen haben.
-
-Im Editor schaut es so aus:
+It will look like this in the editor:
 
 ![](/img/tutorials/nahrungssuche/Lektion4_8.png)
 
-Jetzt laufen deine Ameisen zu einem Zuckerhaufen oder einem Obststück, sobald sie es sehen. Sobald deine Ameisen an einer Nahrungsquelle angelangt sind, passiert aber noch nichts. 
-Wir sollten jetzt den Ameisen mitteilen, was sie tun sollen, wenn sie an einer Nahrungsquelle angekommen sind.
+Now your ants will run toward a mound of sugar or a piece of fruit as soon as they see one. But once your ants reach it, they 
+won't do anything. We still need to tell them what to do once they reach some food.
 
-Suche die Methode „ZielErreicht“, die für den Zucker zuständig ist. Füge ihr anschließend die folgenden Zeilen hinzu:
+Find the “ReachedDestination” method for sugar. Add the following lines:
 
 ```cs
 public override void ZielErreicht(Zucker zucker)
@@ -94,7 +104,7 @@ public override void ZielErreicht(Zucker zucker)
 }
 ```
 
-Suche anschließend die Methode „ZielErreicht“, die für das Obst zuständig ist. Ändere sie ebenfalls ab, indem du in die Klammern (obst) einsetzt anstatt (zucker).
+When you’re done, find the “ReachedDestination” method for fruit. Make the same changes, but substitute (fruit) for (sugar). 
 
 ```cs
 public override void ZielErreicht(Obst zucker)
@@ -104,29 +114,25 @@ public override void ZielErreicht(Obst zucker)
 }
 ```
 
-Im Editor sieht es wie folgt aus:
+In the editor it will look like this:
 
 ![](/img/tutorials/nahrungssuche/Lektion4_10.png)
 
-Jetzt suchen deine Ameisen nach Nahrung ( Zucker und Obst) und laufen dorthin, sobald sie sie sehen. Wenn sie dort angekommen sind, nehmen sie Nahrung auf und tragen sie zurück in den Bau.
+Now your ants will search for food (sugar and fruit) and run towards it as soon as they see some. When they arrive, they'll 
+pick up the food and carry it back to the anthill.
 
 ![](/img/tutorials/nahrungssuche/Lektion4_11.png)
 
-Dafür hast du acht Zeilen an Quelltext (auch Quellcode genannt) geschrieben. 
-
-Quelltext nennt man den in einer Programmiersprache geschriebenen Text eines Computerprogramms, das in Maschinensprache übersetzt werden kann. 
-Diese Übersetzung gibt dem Computer vor, was er ausführen soll. 
-
-Einen solchen Übersetzer nennt man Compiler (lat. für compilare = anhäufen). 
-Ein Compiler ist also eine Computeranwendung, die ein anderes Programm, das in einer bestimmten Programmiersprache geschrieben ist, so übersetzt, dass ein Computer sie ausführen kann.
-
+Imagine—you accomplished all that just by writing eight lines of source code! Source code is what we call the text that we write 
+for a program using a programming language. It gets translated to machine code later. It's this translation that actually tells 
+the computer what to do. We call the thing that creates the translation a “compiler”. A compiler is a program that translates 
+another program written in a certain programming language so that a computer can execute it. 
 
 ![](/img/tutorials/nahrungssuche/Lektion4_12.png)
 
-Wenn du dem Spiel genau zusiehst, wirst du bemerken, dass immer neue Ameisen zu einem Obststück hinlaufen, auch wenn schon sehr viele Ameisen es tragen. 
-Dieses Verhalten kannst du noch verbessern.
-
-Suche die Methode „Sieht“ für Obst. Ändere die Zeile so ab, dass sie so aussieht:
+If you look at the game closely, you'll notice that more and more ants keep running over to a piece of fruit even if there are already 
+several ants carrying it. That's not really ideal, but you can improve their behavior with a few lines of code. Find the “See” method 
+for fruit. Edit by adding this line of code: 
 
 ```cs
 public override void Sieht(Obst obst)
@@ -137,6 +143,8 @@ public override void Sieht(Obst obst)
     }
 }
 ```
+
+Find the “ReachedDestination” method for fruit. Add a new “if” condition: 
 
 ```cs
 public override void ZielErreicht(Obst obst)
@@ -149,9 +157,10 @@ public override void ZielErreicht(Obst obst)
 }
 ```
 
-In der „Sieht“ Methode haben wir überprüft, ob das Obststück noch Ameisen zum Tragen benötigt. 
-In der „ZielErreicht“ Methode überprüfen wir das noch einmal mit „if-BrauchtNochTräger“. 
-Der Grund für diese Doppelung: es kann sein, dass das Obststück noch einen Träger benötigt, wenn die Ameise es sieht. 
-Wenn die Ameise am Obststück etwas später ankommt, kann aber schon eine andere Ameise an ihrer Stelle hinzugekommen sein und hilft beim Tragen.
-
-Damit hast du deinen Ameisen beigebracht, wie sie sich Nahrung in Form von Obst und Zucker besorgen und in ihren Bau tragen können. Für jede zum Bau transportierte Zuckereinheit erhältst du übrigens 1 Punkt und für jeden Apfel als Obststück 250 Punkte.
+The “See” method now tells our ants now check if the piece of fruit needs more ants to carry it. In the “ReachedDestination” method we 
+check again with “ifNeedsMoreCarriers” to see if more ants are needed. The reason that we want our ants to check twice is that more ants 
+may be needed to carry the fruit at the moment that the ant first sees it, but that by the time the ant actually reaches the fruit, 
+another ant may have already arrived and help will no longer be needed. So now you've taught your ants how to get food in the form of 
+fruit and sugar and how to carry it back to their anthill. You'll earn one point for every grain of sugar carried back to the anthill and 
+250 points for every piece of fruit carried back to the anthill. In the next lesson (lesson five if you're keeping count), we'll discuss 
+something even more exciting: battling bugs! 

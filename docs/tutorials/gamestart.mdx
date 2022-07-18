@@ -3,79 +3,96 @@ title: Game start
 sidebar_position: 2
 ---
 
+# Creating an Ant Colony
 
-Hier erfährst du, wie du mit dem eigentlichen Spiel beginnst, indem du deine Ameise erschaffst und sie in ihrer Welt platzierst. 
+In this lesson we'll discuss how to get started with the game itself by creating an ant colony and placing them in their 
+virtual world.
 
-Die nachfolgenden Erklärungen und Bilder beziehen sich auf das Visual Studio 2013 als Entwicklungsumgebung sowie die beiden Frameworks .NET Framework 4 und .XNA Framework. 
+The following instructions and screenshots are all based on the Visual Studio 2013 development environment as well as the 
+.NET Framework 4 and .XNA frameworks. If you're using a different development environment, things may look a bit different.
 
-Zur Erinnerung: Das .NET Framework 4 dient dem Betrieb von Programmen, die mit den Programmiersprachen C# oder VB.NET entwickelt worden sind. Das .XNA-Framework ermöglicht die 3D-Ansicht des Spiels.
+Quick reminder: .NET Framework 4 makes it possible to write and run programs that have been developed with the C# or VB.NET 
+programming languages. The .XNA framework is what makes the game's 3D view possible.
 
-Um so schnell wie möglich mit dem Spiel zu starten, haben wir die komplette Erklärung aller Funktionen im Startbildschirm etwas weiter hinten angesetzt. Um das Spiel zu starten, brauchst du nicht alle Informationen. Deshalb kannst du sie an einer späteren Stelle in dieser Lektion nachlesen. 
+Our goal here is to get you into the game as quickly and easily as possible. For that reason we're not going to provide a 
+full explanation of all the tabs and menus on the start screen (don't worry, though, we'll cover them in depth later). 
+You don't need all that info to start playing the game. You can come back to the lessons later if you want to read up on 
+the advanced features.
 
-Was passiert jetzt? 
+OK, so what happens now? 
 
-In den nachfolgenden Schritten erstellen wir gemeinsam deine erste Ameisenkolonie.
-Die junge Ameisenkolonie mit ihren kleinen Bewohnern steht für dein eigenes, kleines Projekt in der Programmierung. Die Ameisenkolonie wird sich so verhalten, wie du es ihnen mit deinen Programmbefehlen vorgibst.
+In the following steps we're going to create our first ant colony together. The new ant colony with its tiny citizens is 
+your very own programming project. The behavior of the ant colony depends on the commands you give it by writing and editing 
+the program.
 
-Auf dem Startbildschirm findest du über dem Begrüßungstext die drei Reiter „Willkommen“, „Statistik“ und „3D Ansicht“. Darüber befindet sich die Menüleiste mit den „Modus“- und „Geschwindigkeit“- Buttons. Die drei grauen Symbole mit „Play“, „Stop“ und „Pause“ kannst du erstmal noch nicht anklicken.
-
+On the start screen you'll find three tabs above the greeting: "Welcome", "Statistics" and "3D View". Above the tabs you'll 
+find the menu bar with the "Mode" and "Speed" menus. You'll also see the "Play", "Stop" and "Pause" symbols up there on the 
+left. They'll all be gray because you can't click them yet. 
 
 ![](/img/tutorials/spielstart/lektion3_1.png)
 
-Klicke den „Modus“-Button und wähle per Rechtsklick „freies Spiel“ aus. Sofort erscheint ein neuer Reiter, „Freies Spiel“, das du jetzt klicken kannst.
+Click the "Mode" button and select "Free Game" by right-clicking. A new tab labeled "Free Game" will appear in the tab bar. 
 
 ![](/img/tutorials/spielstart/lektion3_2.png)
 
-Klicke im neuen Menü „Freies Spiel“ auf einen leeren Slot.
+Click the new "Free Game" tab and then click one of the empty slots in the menu that appears. 
 
 ![](/img/tutorials/spielstart/lektion3_3.png)
 
-Es erscheint das Fenster „Spieler auswählen“. Du siehst darin verschiedene Vorlagen, die Verhaltensweisen von Ameisen vorgeben. Sie werden später noch wichtig. Im Moment wollen wir jedoch unsere eigene Ameisenkolonie erstellen
+The "Select Player" window will appear. You'll see icons for various templates for different kinds of ant behavior. They'll 
+be important later, but for now we just want to create our own ant colony.
 
 ![](/img/tutorials/spielstart/lektion3_4.png)
 
-Klicke dazu auf das „Plus“-Symbol in der Menüleiste und es öffnet sich das Fenster „Ameisenkolonie erstellen“. 
+To do that, click on the “+” symbol in the menu bar and the “Create Ant Colony” window will open. 
 
 ![](/img/tutorials/spielstart/lektion3_5.png)
 
-Vergib deinem neuen, kleinen Kolonie-Projekt nun einen Namen. Beachte bitte: der Name der neuen Kolonie darf nur Buchstaben und Zahlen enthalten, nicht mit einer Zahl beginnen und muss zwischen 2 und 20 Zeichen lang sein. 
-Wir haben unsere Kolonie „Alpha“ getauft. Wenn du fertig bist, klicke „OK“ und das Fenster „Ameise bearbeiten“ öffnet sich. 
+Give your new colony project a name. Note: the name can only contain letters and numbers, it can't begin with a number, it 
+has to be at least two characters long and it can't be more than twenty characters long. We named our colony “Alpha”. When 
+you're done, click “OK” and the “Edit Ant” window will open.
 
 ![](/img/tutorials/spielstart/lektion3_6.png)
 
-Mit diesem Fenster erhältst du die Bestätigung, dass du eine neue Ameisenvorlage erfolgreich erstellt hast. Anschließend klickst du „Yes“, um deine Entwicklungsumgebung zu öffnen (hier Microsoft Visual Studio). 
-Diese brauchst du, um deine kleine Kolonie als Projekt mit Hilfe von Programmierbefehlen bearbeiten zu können.
+This window is confirmation that you've created a new ant template. Click “Yes” to open your development environment (in this 
+case, Microsoft Visual Studio). You'll need it to be able to configure and control your colony by writing and editing source 
+code for the program that “runs” the colony.
 
 ![](/img/tutorials/spielstart/lektion3_7.png)
 
-Wow, das sind ganz schön viele Schaltflächen! Das rührt daher, dass das Microsoft Visual Studio eben schon ein richtig professionelles Werkzeug (=Tool) für Programmierer ist. 
-Mit solchen Entwicklungsumgebungen hat man so ziemlich alles an Software erschaffen, was man sich vorstellen kann – zum Beispiel Microsoft Windows als Betriebssystem. 
-Aber keine Angst! Für uns wichtig sind jetzt nur einige dieser Schaltflächen, nämlich das große Fenster in der Mitte (der Code Editor) sowie das kleine Fenster rechts (der Solution Explorer). 
+Wow, that's a lot of windows and menus and buttons! That's because Microsoft Visual Studio is a highly developed tool for 
+professional programmers. With the help of development environments like this one, programmers have made every kind of software 
+you can imagine, including the Windows operating system that you're using right now. But don't panic! We only need to work 
+with a couple of these elements: the big window in the middle (the Code Editor) and the little window on the right (the 
+Solution Explorer).
 
-Jetzt sind wir soweit. Klicke den grünen Dreieckssymbol des Startbuttons, um deine frisch erschaffene Kolonie zu laden.
+Now we're ready. Click the start button (it's the green triangle) to load your newly created colony. 
 
 ![](/img/tutorials/spielstart/lektion3_8.png)
 
-Es öffnet sich nun wieder das AntMe!-Startfenster, das du schon kennst. Du siehst nun, dass du die „Play“ und „Pause“-Symbole über dem „Willkommen“-Reiter anklicken kannst.
+The AntMe! start screen that you know and love will appear again. You'll notice that the “Play” and “Pause” symbols above the 
+greeting are now clickable. 
 
 ![](/img/tutorials/spielstart/lektion3_9.png)
 
-Mit „Play“ startest du nun das Geschehen in deiner Ameisenkolonie in der 3D-Ansicht.
+Click “Play” to start the simulation and bring your ants to life in the 3D view.
 
 ![](/img/tutorials/spielstart/lektion3_10.png)
 
-Jetzt sind zwei AntMe!-Fenster geöffnet, die 3D-Ansicht und das Startfenster. Lies dir nun unter dem Reiter „3D Ansicht“ durch, wie du die 3D Ansicht steuern kannst, um die Kamera im Sandkasten zu bewegen. 
+Now two AntMe! windows are open: the 3D window and the start screen. Check out the “3D View” tab on the start screen to see how 
+you can control the 3D view and move the camera around the sandbox.
 
 ![](/img/tutorials/spielstart/lektion3_11.png)
 
-Bewege die Kamera mit der Maus, um das Innenleben des Sandkastens zu erkunden. 
-Schaue dir alles in Ruhe an, um ein Gefühl für die von dir erschaffene Spielwelt und ihre Bewohner zu bekommen.
+Move the camera with the mouse in order to explore the inner life of the sandbox. Take your time and have a look around in order 
+to get a feel for the game world and its inhabitants.
 
 ![](/img/tutorials/spielstart/lektion3_12.png)
 
-Wenn du mit der Kamera ganz nah an den Ameisenbau fährst, kannst du die kleinen Fühler deiner Ameisen erkennen.
+If you move the camera close to the anthill, you'll be able to see your ants' feelers poking out of the anthill.
 
 ![](/img/tutorials/spielstart/lektion3_13.png)
 
-Warum sich die Ameisen nicht bewegen? Wir haben zunächst die Kolonie Alpha erschaffen, in der die Ameisen sich nun aufhalten. 
-Damit haben wir aber den Ameisen noch nicht vorgegeben, wie sie sich verhalten sollen. Das kommt jetzt in dem nächsten Tutorial. Darin erfährst du, wie du deine Ameisen in Bewegung setzt und wie sie Nahrung sammeln können.
+Why aren't the ants moving? Well, we created the Alpha colony and the anthill has been populated with ants. But we still haven't 
+told the ants what they should do or how they should behave. We'll cover that in the next lesson. You'll find out how you can get 
+your ants to move around and how to get them to gather food.
